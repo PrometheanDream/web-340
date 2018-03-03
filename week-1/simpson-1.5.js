@@ -1,6 +1,6 @@
 
 
-var http = require("http");
+var http = require("http"); // requires http in the url when addressing the server
 
 function processRequest(req, res) {
 
@@ -16,10 +16,10 @@ var body = "Welcome to my server!";
 
     });
 
-    res.end(body);
+    res.end(body); // sends the body variable to the webpage to be viewed.
 
 }
 
-var s = http.createServer(processRequest);
+var s = http.createServer(processRequest); // creates the server, which calls the request and receive portion.
 
 s.listen(8080);
