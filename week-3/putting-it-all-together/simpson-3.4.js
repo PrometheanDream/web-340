@@ -14,31 +14,23 @@ app.set("view engine", "ejs"); //sets view engine
 
 app.use(logger("short")); //short format on logger
 
-app.get("/", function(request, response){ // renders the home page with index
-    response.render("index", {
-        message: "Home Page"
-    });
+app.get("/", function(request, response) {
+    response.send("API invoked as an HTTP GET request.");
 });
 
-app.get("/about", function(request, response){ // renders about page
-    response.render("about", {
-        message: "About Page"
-    });
+app.put("/", function(request, response) {
+    response.send("API invoked as an HTTP PUT request.");
 });
 
-app.get("/contact", function(request, response){ // renders contact page
-    response.render("about", {
-        message: "Contact Page"
-    });
+app.post("/", function(request, response) {
+    response.send("API invoked as an HTTP POST request");
 });
 
-app.get("/products", function(request, response){ // renders product page
-    response.render("products", {
-        message: "Products Page"
-    });
+app.delete("/", function(request, response) {
+    response.send("API invoked as an HTTP DELETE request");
 });
 
-http.createServer(app).listen(8080, function(){ // starts the server
-    console.log("Application started on port 8080");
+http.createServer(app).listen(8080, function() {
+    console.log("Application started on port 8080!");
 });
 
