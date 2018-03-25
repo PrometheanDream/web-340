@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--Title: Assignment 5.2
+Contributors: Richard Krasso, William Simpson -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>if...else...render</title>
+
+    <!-- Stylesheet - Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+        </li>
+    </ul>
+</nav>
+
+<div role="main" class="container">
+    <br/><br/>
+
+    <h2>People List</h2>
+
+    <% for (var k = 0; k < people.length; k++) { %>
+    <!-- if -->
+    <% if (people[k] == "Adam") { %> <!-- if (people.length > 0) output people[k] or something like that. -->
+    <div class="alert alert-success" role="alert"><strong><%= people[k] %></strong></div>
+    <% } %>
+    <!-- // end if -->
+    
+    <% } %>
+    <!-- end for loop -->
+</div>
+
+</body>
+</html>
