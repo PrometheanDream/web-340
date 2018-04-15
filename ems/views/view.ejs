@@ -3,13 +3,20 @@
 
 <% include header %>
 
-<body>
+<div role="main" class="container" style="width: 50%;">
+    <br/><br/>
 
-<% include navbar %>
+    <h2>-- Employee Record --</h2>
+    <div>
+        <div class="form-group">
+            <label for="txtName">Name:</label>
+            <input type="text" class="form-control" id="txtName" readonly value="<%= employee[0].name %>" name="txtName" />
+        </div>
+    </div>
 
-<div class="container">
-    <p>Something to see</p>
+    <br /><br />
 
+    <a href="/list">Return to Employees</a>
 </div>
 
 
