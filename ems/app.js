@@ -10,6 +10,7 @@ var helmet = require("helmet");
 var csrf = require("csurf");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+var Employee = require("./models/employee");
 
 // csrf Protection
 var csrfProtection = csrf({cookie: true});
@@ -17,11 +18,11 @@ var csrfProtection = csrf({cookie: true});
 // starts express
 var app = express();
 
-var Employee = require("./models/employee");
 
 // set
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set("port", process.env.PORT || 8080);
 
 // use
 app.use(logger("short"));
@@ -41,15 +42,9 @@ app.use(function(request, response, next) {
 // routes - get
 app.get("/", function (request, response) {
     response.render("index", {
-        message: "XSS Prevention Example"
+        title: "Home page"
     });
 });
-
-/*app.get("/list", function(request, response){
-    response.render("list", {
-        message: "Employee Records"
-    });
-});*/
 
 app.get("/new", function(request, response){
     response.render("new", {
@@ -57,11 +52,11 @@ app.get("/new", function(request, response){
     });
 });
 
-/*app.get("/view", function(request, response){
+app.get("/view", function(request, response){
     response.render("view", {
         message: "Employee Details"
     });
-});*/
+});
 
 // routes - post
 app.post("/process", function(request, response) {
@@ -69,26 +64,18 @@ app.post("/process", function(request, response) {
     response.redirect("/");
 });
 
-// mLab connection
+// mLab connection database
 
 var mongoDB = "mongodb://PrometheanDream:Mollydog777@ds131329.mlab.com:31329/ems";
 
 mongoose.connect(mongoDB, {
-
     useMongoClient: true
-
 });
-
 mongoose.Promise = global.Promise;
-
 var db = mongoose.connection;
-
 db.on("error", console.error.bind(console, "MongoDB connection error: "));
-
 db.once("open", function() {
-
     console.log("Application connected to mLab MongoDB instance");
-
 });
 
 // adding things to server
@@ -153,5 +140,5 @@ app.post("/process", function(request, response) {
  
 
 http.createServer(app).listen(8080, function() {
-    console.log("Application started on port 8080!");
+    console.log("Application started on port " + app.get("port"));
 });
